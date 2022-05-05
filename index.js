@@ -85,15 +85,14 @@ let movies = [
 
 app.get("/movies", (req, res) => {
   res.status(200).json(movies);
-  res.send("Successful GET request returning data on all movies");
 });
 
 
 //Request to GET a single movie
 
-app.get("/movies/:title", (req, res) => {
+app.get("/movies/:movieTitle", (req, res) => {
   const { title } = req.params;
-  const movieTitle = movies.find( movies => movies.title === title );
+  const movieTitle = movies.find( movie => movie.title === title );
   
   if (movieTitle) {
     res.status(200).json(movieTitle);
@@ -105,9 +104,9 @@ app.get("/movies/:title", (req, res) => {
 
 //Request to GET a single genre
 
-app.get("/movies/genre/:genre", (req, res) => {
+app.get("/movies/genre/:genreType", (req, res) => {
   const { genre } = req.params;
-  const genreType = movies.find( movies => movies.genre === genre );
+  const genreType = movies.find( movie => movie.genre === genre ).genre;
   
   if (genreType) {
     res.status(200).json(genreType);
@@ -121,7 +120,7 @@ app.get("/movies/genre/:genre", (req, res) => {
 
 app.get("/movies/director/:directorName", (req, res) => {
   const { directorName } = req.params;
-  const director = movies.find( movies => movies.director.name === directorName ).director;
+  const director = movies.find( movie => movie.director.name === directorName ).director;
   
   if (director) {
     res.status(200).json(director);
@@ -165,7 +164,7 @@ app.put("/users/:id", (req, res) => {
 
 //Add movie to favorites
 
-app.post("/users/:id/:movieTitle", (req, res) => {
+app.post("/users/:id/favorites/:movieTitle", (req, res) => {
   const { id, movieTitle } = req.params;
 
   let user = users.find( user => user.id == id );
@@ -181,7 +180,7 @@ app.post("/users/:id/:movieTitle", (req, res) => {
 
 //DELETE movie from favorites
 
-app.delete("/users/:id/:movieTitle", (req, res) => {
+app.delete("/users/:id/favorites/:movieTitle", (req, res) => {
   const { id, movieTitle } = req.params;
 
   let user = users.find( user => user.id == id );
@@ -204,7 +203,7 @@ app.delete("/users/:id", (req, res) => {
 
   if (user){
     users = users.filter( user => user.id != id )
-    res.status(200).send(`${user} has been remove from platform`);
+    res.status(200).send(`${user.name} has been remove from platform`);
   }else {
     res.status(404).send("User is stuck with us!")
   }
