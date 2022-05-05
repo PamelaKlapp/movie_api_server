@@ -5,8 +5,188 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies</title>
+    <style>
+        *{
+            font-family: sans-serif;
+            width: 100%;
+            height: auto;
+        }
+        .container{
+            width: 90%;
+            height: auto;
+            margin: auto;
+        }
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .styled-table thead tr {
+            background-color: #4fa6d8;
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Movies</h1>
+    <div class="container">
+        <h1>Movies App</h1>
+        <h3>Objective</h3>
+        <p>To build the server-side component of a “movies” web application. The web
+            application will provide users with access to information about different
+            movies, directors, and genres. Users will be able to sign up, update their
+            personal information, and create a list of their favorite movies.</p>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Business Logic</th>
+                    <th>URL</th>
+                    <th>HTTP Method</th>
+                    <th>Query Parameter</th>
+                    <th>Request Body data format</th>
+                    <th>Response Body data format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Get a list of movies</td>
+                    <td>/movies</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>None</td>
+                    <td>A JSON object holding data about all movies</td>
+                </tr>
+                <tr>
+                    <td>Get data about a single movie by title</td>
+                    <td>/movies/[Title]</td>
+                    <td>GET</td>
+                    <td>:title</td>
+                    <td>None</td>
+                    <td>A JSON object holding data about a single movie, 
+                        containing a Name, description, genre, director, 
+                        image URL and whether it's feautured or not. Example: <br>
+                        {<br>
+                            <b>title: 'Dune'</b>,<br>
+                            description: 'A noble family becomes embroiled in a war 
+                            for control over the galaxy's most valuable asset while its 
+                            heir becomes troubled by visions of a dark future.',<br>
+                            genre: 'Sci-Fi',<br>
+                            director:{<br> 
+                                &nbsp;&nbsp name: 'Denis Villeneuve',<br>
+                                &nbsp;&nbsp birth: '03/08/1967'<br>
+                                &nbsp;&nbsp },<br>
+                            image: '../images/movie_images/dune.svg',<br>
+                            feautured: true<br>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Get data about movies by genre</td>
+                    <td>/movies/genre/[Genre]</td>
+                    <td>GET</td>
+                    <td>:genre</td>
+                    <td>None</td>
+                    <td>A JSON object holding data about movies, 
+                        containing an especific genre. Example: <br>
+                        {<br>
+                            title: 'Dune',<br>
+                            description: 'A noble family becomes embroiled in a war 
+                            for control over the galaxy's most valuable asset while its 
+                            heir becomes troubled by visions of a dark future.',<br>
+                            <b>genre: 'Sci-Fi'</b>,<br>
+                            director:{<br> 
+                                &nbsp;&nbsp name: 'Denis Villeneuve',<br>
+                                &nbsp;&nbsp birth: '03/08/1967'<br>
+                                &nbsp;&nbsp },<br>
+                            image: '../images/movie_images/dune.svg',<br>
+                            feautured: true<br>
+                        }</td>
+                </tr>
+                <tr>
+                    <td>Get data about a director</td>
+                    <td>/movies/director/[directorname]</td>
+                    <td>GET</td>
+                    <td>:directorname</td>
+                    <td>None</td>
+                    <td>A JSON object holding data about a director,
+                        containing an especific director name. Example: <br>
+                        director:{<br>
+                        <b>name: 'Denis Villeneuve',</b><br>
+                            birth: '03/08/1967'<br>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Add an user</td>
+                    <td>/users/register</td>
+                    <td>POST</td>
+                    <td>:register</td>
+                    <td>A JSON object holding data about a new user. Example:<br>
+                        {<br>
+                        name: "Martin Schmidt",<br>
+                        username: "MartinLovesMovies",<br>
+                        email: "martin@email.com"<br>
+                        }
+                    </td>
+                    <td>A JSON object holding data about a new user that was added,
+                        including an ID:<br>
+                        {<br>
+                        name: "Martin Schmidt",<br>
+                        username: "MartinLovesMovies",<br>
+                        email: "martin@email.com"<br>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Update info from an user</td>
+                    <td>/users/update/[username]</td>
+                    <td>PUT</td>
+                    <td>:username</td>
+                    <td>None</td>
+                    <td>A text message indicating whether the user's username was succesfully update.</td>
+                </tr>
+                <tr>
+                    <td>Allows users to add a movie to their List of Fvorites</td>
+                    <td>/users/id/[movieTitle]</td>
+                    <td>POST</td>
+                    <td>:movieTitle</td>
+                    <td>A JSON object holding data about the movie the user added. Example:<br>
+                        {<br>
+                        title: 'Kill Bill',<br>
+                        director: 'Quentin Tarantino'<br>}
+                    </td>
+                    <td>
+                        A text messages indicating the movie was added.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Remove a movie from a user's list</td>
+                    <td>/users/id/[movieTitle]</td>
+                    <td>DELETE</td>
+                    <td>:movieTitle</td>
+                    <td>None</td>
+                    <td>A text message indicating the movie was removed.</td>
+                </tr>
+                <tr>
+                    <td>Remove an user from the app</td>
+                    <td>/users/[id]</td>
+                    <td>DELETE</td>
+                    <td>:id</td>
+                    <td>None</td>
+                    <td>A text message indicating the email of the user is not longer on the app.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
