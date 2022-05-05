@@ -29,7 +29,7 @@ let movies = [
     title: "Spirited Away",
     description:
       "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
-    genre: "Animation",
+    genreType: "Animation",
     director: {
       name: "Hayao Miyazaki",
       birth: "1965",
@@ -40,7 +40,7 @@ let movies = [
     title: "Django Unchained",
     description:
       "With the help of a German bounty-hunter, a freed slave sets out to rescue his wife from a brutal plantation-owner in Mississippi.",
-    genre: "Thriller",
+    genreType: "Thriller",
     director: {
       name: "Quentin Tarantino",
       birth: "1963",
