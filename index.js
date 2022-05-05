@@ -92,10 +92,10 @@ app.get("/movies", (req, res) => {
 
 app.get("/movies/:movieTitle", (req, res) => {
   const { movieTitle } = req.params;
-  const movietitle = movies.find( movie => movie.title === title );
+  const movie = movies.find( movie => movie.title === movieTitle );
   
-  if (movietitle) {
-    res.status(200).json(movietitle);
+  if (movie) {
+    res.status(200).json(movie);
   } else {
     res.status(404).send("Not found the movie");
   }
@@ -106,7 +106,7 @@ app.get("/movies/:movieTitle", (req, res) => {
 
 app.get("/movies/genre/:genreType", (req, res) => {
   const { genreType } = req.params;
-  const genre = movies.find( movie => movie.genre === genreType ).genreType;
+  const genre = movies.find( movie => movie.genre === genreType ).genre;
   
   if (genre) {
     res.status(200).json(genre);
