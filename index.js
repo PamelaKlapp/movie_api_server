@@ -81,7 +81,58 @@ let movies = [
   },
 ];
 
+// Request to GET all movies
+
+app.get("/movies", (req, res) => {
+  res.status(200).json(movies);
+  res.send("Successful GET request returning data on all movies");
+});
+
+
+//Request to GET a single movie
+
+app.get("/movies/:title", (req, res) => {
+  const { title } = req.params;
+  const movieTitle = movies.find( movies => movies.title === title );
+  
+  if (movieTitle) {
+    res.status(200).json(movieTitle);
+  } else {
+    res.status(404).send("Not found the movie");
+  }
+});
+
+
+//Request to GET a single genre
+
+app.get("/movies/genre/:genre", (req, res) => {
+  const { genre } = req.params;
+  const genreType = movies.find( movies => movies.genre === genre );
+  
+  if (genreType) {
+    res.status(200).json(genreType);
+  } else {
+    res.status(404).send("There is no movie with this genre");
+  }
+});
+
+
+//Request to GET the director's name 
+
+app.get("/movies/director/:directorName", (req, res) => {
+  const { directorName } = req.params;
+  const director = movies.find( movies => movies.director.name === directorName ).director;
+  
+  if (director) {
+    res.status(200).json(director);
+  } else {
+    res.status(404).send("There is no director with that name");
+  }
+});
+
+
 // Create a new user
+
 app.post("/users", (req, res) => {
   const newUser = req.body;
 
@@ -96,6 +147,7 @@ app.post("/users", (req, res) => {
 
 
 //Update username
+
 app.put("/users/:id", (req, res) => {
   const { id } = req.params;
   const updatedUser = req.body;
@@ -112,6 +164,7 @@ app.put("/users/:id", (req, res) => {
 
 
 //Add movie to favorites
+
 app.post("/users/:id/:movieTitle", (req, res) => {
   const { id, movieTitle } = req.params;
 
@@ -125,7 +178,9 @@ app.post("/users/:id/:movieTitle", (req, res) => {
   }
 })
 
+
 //DELETE movie from favorites
+
 app.delete("/users/:id/:movieTitle", (req, res) => {
   const { id, movieTitle } = req.params;
 
@@ -139,7 +194,9 @@ app.delete("/users/:id/:movieTitle", (req, res) => {
   }
 })
 
+
 //DELETE user
+
 app.delete("/users/:id", (req, res) => {
   const { id } = req.params;
 
@@ -152,56 +209,6 @@ app.delete("/users/:id", (req, res) => {
     res.status(404).send("User is stuck with us!")
   }
 })
-
-
-// Request to GET all movies
-
-app.get("/movies", (req, res) => {
-  res.status(200).json(movies);
-  res.send("Successful GET request returning data on all movies");
-});
-
-
-//Request to GET a single movie
-
-app.get("/movies/:title", (req, res) => {
-  const { title } = req.params;
-  const movieTitle = movies.find( movies => movies.title === title );
-
-  if (movieTitle) {
-    res.status(200).json(movieTitle);
-  } else {
-    res.status(404).send("Not found the movie");
-  }
-});
-
-
-//Request to GET a single genre
-
-app.get("/movies/genre/:genre", (req, res) => {
-  const { genre } = req.params;
-  const genreType = movies.find( movies => movies.genre === genre );
-
-  if (genreType) {
-    res.status(200).json(genreType);
-  } else {
-    res.status(404).send("There is no movie with this genre");
-  }
-});
-
-
-//Request to GET the director's name 
-
-app.get("/movies/director/:directorName", (req, res) => {
-  const { directorName } = req.params;
-  const director = movies.find( movies => movies.director.name === directorName ).director;
-
-  if (director) {
-    res.status(200).json(director);
-  } else {
-    res.status(404).send("There is no director with that name");
-  }
-});
 
 
 //EXPRESS Static
