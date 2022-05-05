@@ -91,11 +91,11 @@ app.get("/movies", (req, res) => {
 //Request to GET a single movie
 
 app.get("/movies/:movieTitle", (req, res) => {
-  const { title } = req.params;
-  const movieTitle = movies.find( movie => movie.title === title );
+  const { movieTitle } = req.params;
+  const movietitle = movies.find( movie => movie.title === title );
   
-  if (movieTitle) {
-    res.status(200).json(movieTitle);
+  if (movietitle) {
+    res.status(200).json(movietitle);
   } else {
     res.status(404).send("Not found the movie");
   }
@@ -105,11 +105,11 @@ app.get("/movies/:movieTitle", (req, res) => {
 //Request to GET a single genre
 
 app.get("/movies/genre/:genreType", (req, res) => {
-  const { genre } = req.params;
-  const genreType = movies.find( movie => movie.genre === genre ).genre;
+  const { genreType } = req.params;
+  const genre = movies.find( movie => movie.genre === genreType ).genreType;
   
-  if (genreType) {
-    res.status(200).json(genreType);
+  if (genre) {
+    res.status(200).json(genre);
   } else {
     res.status(404).send("There is no movie with this genre");
   }
