@@ -104,9 +104,9 @@ app.get("/movies/:movieTitle", (req, res) => {
 
 //Request to GET a single genre
 
-app.get("/movies/genre/:genreType", (req, res) => {
-  const { genreType } = req.params;
-  const genre = movies.find( movie => movie.genre === genreType ).genre;
+app.get("/movies/genre/:genreName", (req, res) => {
+  const { genreName } = req.params;
+  const genre = movies.find( movie => movie.genre === genreName ).genre;
   
   if (genre) {
     res.status(200).json(genre);
