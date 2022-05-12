@@ -68,9 +68,9 @@
                 </tr>
                 <tr>
                     <td>Get data about a single movie by title</td>
-                    <td>/movies/[movieTitle]</td>
+                    <td>/movies/[Title]</td>
                     <td>GET</td>
-                    <td>:movieTitle</td>
+                    <td>:Title</td>
                     <td>None</td>
                     <td>A JSON object holding data about a single movie, 
                         containing a Name, description, genre, director, 
@@ -128,9 +128,9 @@
                 </tr>
                 <tr>
                     <td>Add an user</td>
-                    <td>/users/register</td>
+                    <td>/users</td>
                     <td>POST</td>
-                    <td>:register</td>
+                    <td>None</td>
                     <td>A JSON object holding data about a new user. Example:<br>
                         {<br>
                         name: "Martin Schmidt",<br>
@@ -149,7 +149,7 @@
                 </tr>
                 <tr>
                     <td>Update info from an user</td>
-                    <td>/users/update/[username]</td>
+                    <td>/users/[username]</td>
                     <td>PUT</td>
                     <td>:username</td>
                     <td>None</td>
@@ -157,7 +157,7 @@
                 </tr>
                 <tr>
                     <td>Allows users to add a movie to their List of Fvorites</td>
-                    <td>/users/id/favorites/[movieTitle]</td>
+                    <td>/users/username/favorites/[movieTitle]</td>
                     <td>POST</td>
                     <td>:movieTitle</td>
                     <td>A JSON object holding data about the movie the user added. Example:<br>
@@ -171,7 +171,7 @@
                 </tr>
                 <tr>
                     <td>Remove a movie from a user's list</td>
-                    <td>/users/id/favorites/[movieTitle]</td>
+                    <td>/users/username/favorites/[movieTitle]</td>
                     <td>DELETE</td>
                     <td>:movieTitle</td>
                     <td>None</td>
@@ -181,7 +181,7 @@
                     <td>Remove an user from the app</td>
                     <td>/users/[id]</td>
                     <td>DELETE</td>
-                    <td>:id</td>
+                    <td>:username</td>
                     <td>None</td>
                     <td>A text message indicating the email of the user is not longer on the app.</td>
                 </tr>
