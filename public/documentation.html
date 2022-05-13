@@ -175,7 +175,16 @@
                     <td>POST</td>
                     <td>:MovieID</td>
                     <td>None</td>
-                    <td>A text messages indicating the movie was added.</td>
+                    <td>A JSON Object holding the new user's added favorite movie. <br>
+                        Example: <br>
+                        { <br>
+                            Username: "",<br>
+                            Password: "",<br>
+                            Email: "",<br>
+                            Birthday: Date,<br>
+                            FavoriteMovies: [], <br>
+                        }
+                    </td>
                 </tr>
                 <tr>
                     <td>Remove a movie from a user's list</td>
@@ -183,7 +192,16 @@
                     <td>DELETE</td>
                     <td>:MovieID</td>
                     <td>None</td>
-                    <td>A text message indicating the movie was removed.</td>
+                    <td>A JSON Object holding the user's updated favorite movies. <br>
+                        Example: <br>
+                        {  <br>
+                            Username: "",<br>
+                            Password: "",<br>
+                            Email: "",<br>
+                            Birthday: Date,<br>
+                            FavoriteMovies: [], <br>
+                        }
+                    </td>
                 </tr>
                 <tr>
                     <td>Remove an user from the app</td>
