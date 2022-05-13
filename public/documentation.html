@@ -64,7 +64,7 @@
                     <td>GET</td>
                     <td>None</td>
                     <td>None</td>
-                    <td>Array of JSON objects holding data about all movies</td>
+                    <td>Array of JSON objects holding data about all movies.</td>
                 </tr>
                 <tr>
                     <td>Get data about a single movie by title</td>
@@ -76,53 +76,45 @@
                         containing a Name, description, genre, director, 
                         image URL and whether it's feautured or not. Example: <br>
                         {<br>
-                            <b>title: 'Dune'</b>,<br>
-                            description: 'A noble family becomes embroiled in a war 
-                            for control over the galaxy's most valuable asset while its 
-                            heir becomes troubled by visions of a dark future.',<br>
-                            genre: 'Sci-Fi',<br>
-                            director:{<br> 
-                                &nbsp;&nbsp name: 'Denis Villeneuve',<br>
-                                &nbsp;&nbsp birth: '03/08/1967'<br>
+                            _id: serial,<br>
+                            Title: "",<br>
+                            Description: "",<br>
+                            Genre:{Name: "", Description: ""},<br>
+                            Director:{<br> 
+                                &nbsp;&nbsp Name: "",<br>
+                                &nbsp;&nbsp Bio: "",<br>
+                                &nbsp;&nbsp Birth: "",<br>
                                 &nbsp;&nbsp },<br>
-                            image: '../images/movie_images/dune.svg',<br>
-                            feautured: true<br>
+                            ImagePath: "",<br>
+                            Feautured: Boolean<br>
                         }
                     </td>
                 </tr>
                 <tr>
                     <td>Get data about movies by genre</td>
-                    <td>/movies/genre/[genreName]</td>
+                    <td>/movies/genre/[Name]</td>
                     <td>GET</td>
-                    <td>:genreName</td>
+                    <td>:Name</td>
                     <td>None</td>
                     <td>A JSON object holding data about movies, 
                         containing an especific genre. Example: <br>
                         {<br>
-                            title: 'Dune',<br>
-                            description: 'A noble family becomes embroiled in a war 
-                            for control over the galaxy's most valuable asset while its 
-                            heir becomes troubled by visions of a dark future.',<br>
-                            <b>genre: 'Sci-Fi'</b>,<br>
-                            director:{<br> 
-                                &nbsp;&nbsp name: 'Denis Villeneuve',<br>
-                                &nbsp;&nbsp birth: '03/08/1967'<br>
-                                &nbsp;&nbsp },<br>
-                            image: '../images/movie_images/dune.svg',<br>
-                            feautured: true<br>
+                            Name: "",<br>
+                            Description: ""<br>
                         }</td>
                 </tr>
                 <tr>
                     <td>Get data about a director</td>
-                    <td>/movies/director/[directorName]</td>
+                    <td>/movies/director/[Name]</td>
                     <td>GET</td>
-                    <td>:directorName</td>
+                    <td>:Name</td>
                     <td>None</td>
                     <td>A JSON object holding data about a director,
                         containing an especific director name. Example: <br>
-                        director:{<br>
-                        <b>name: 'Denis Villeneuve',</b><br>
-                            birth: '03/08/1967'<br>
+                        {<br>
+                        Name: "",<br>
+                        Bio: "", <br>    
+                        Birth: ""<br>
                         }
                     </td>
                 </tr>
@@ -133,55 +125,71 @@
                     <td>None</td>
                     <td>A JSON object holding data about a new user. Example:<br>
                         {<br>
-                        name: "Martin Schmidt",<br>
-                        username: "MartinLovesMovies",<br>
-                        email: "martin@email.com"<br>
+                        Username: "",<br>
+                        Password: "",<br>
+                        Email: "",<br>
+                        Birthday: Date<br>
                         }
                     </td>
                     <td>A JSON object holding data about a new user that was added,
                         including an ID:<br>
                         {<br>
-                        name: "Martin Schmidt",<br>
-                        username: "MartinLovesMovies",<br>
-                        email: "martin@email.com"<br>
+                        Username: "",<br>
+                        Password: "",<br>
+                        Email: "",<br>
+                        Birthday: Date,<br>
+                        FavoriteMovies: [],<br>
+                        _id: "", <br>
                         }
                     </td>
                 </tr>
                 <tr>
                     <td>Update info from an user</td>
-                    <td>/users/[username]</td>
+                    <td>/users/[Username]</td>
                     <td>PUT</td>
-                    <td>:username</td>
-                    <td>None</td>
-                    <td>A text message indicating whether the user's username was succesfully update.</td>
+                    <td>:Username</td>
+                    <td>A JSON Object holding data with the new user update. <br>
+                        Example: <br>
+                        {<br>
+                            Username: "",<br>
+                            Password: "",<br>
+                            Email: "",<br>
+                            Birthday: Date<br>
+                        }
+                    </td>
+                    <td>A JSON Object holding the new user update. <br>
+                        Example: <br>
+                        { <br>
+                            _id: "", <br>
+                            Username: "",<br>
+                            Password: "",<br>
+                            Email: "",<br>
+                            Birthday: Date,<br>
+                            FavoriteMovies: [],<br>
+                        }
+                    </td>
                 </tr>
                 <tr>
                     <td>Allows users to add a movie to their List of Fvorites</td>
-                    <td>/users/username/favorites/[movieTitle]</td>
+                    <td>/users/username/favorites/[MovieID]</td>
                     <td>POST</td>
-                    <td>:movieTitle</td>
-                    <td>A JSON object holding data about the movie the user added. Example:<br>
-                        {<br>
-                        title: 'Kill Bill',<br>
-                        director: 'Quentin Tarantino'<br>}
-                    </td>
-                    <td>
-                        A text messages indicating the movie was added.
-                    </td>
+                    <td>:MovieID</td>
+                    <td>None</td>
+                    <td>A text messages indicating the movie was added.</td>
                 </tr>
                 <tr>
                     <td>Remove a movie from a user's list</td>
-                    <td>/users/username/favorites/[movieTitle]</td>
+                    <td>/users/username/favorites/[MovieID]</td>
                     <td>DELETE</td>
-                    <td>:movieTitle</td>
+                    <td>:MovieID</td>
                     <td>None</td>
                     <td>A text message indicating the movie was removed.</td>
                 </tr>
                 <tr>
                     <td>Remove an user from the app</td>
-                    <td>/users/[id]</td>
+                    <td>/users/[Username]</td>
                     <td>DELETE</td>
-                    <td>:username</td>
+                    <td>:Username</td>
                     <td>None</td>
                     <td>A text message indicating the email of the user is not longer on the app.</td>
                 </tr>
