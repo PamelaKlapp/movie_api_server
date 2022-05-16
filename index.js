@@ -130,7 +130,7 @@ app.put("/users/:Username", passport.authenticate('jwt', { session: false }), (r
       }
     }
   );
-}):
+});
 
 
 
