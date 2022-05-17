@@ -7,12 +7,13 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   uuid = require("uuid"),
   mongoose = require('mongoose'),
-  Models = require('./models.js');
-
+  Models = require('./models.js'),
+  cors = require('cors');
   
   Movies = Models.Movie,
   Users = Models.User;
   
+  app.use(cors());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   let auth = require('./auth')(app);
