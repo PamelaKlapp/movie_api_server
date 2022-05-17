@@ -8,7 +8,6 @@
     <style>
         *{
             font-family: sans-serif;
-            width: 100%;
             height: auto;
         }
         .container{
@@ -53,6 +52,7 @@
                     <th>URL</th>
                     <th>HTTP Method</th>
                     <th>Query Parameter</th>
+                    <th>Authentication</th>
                     <th>Request Body data format</th>
                     <th>Response Body data format</th>
                 </tr>
@@ -63,6 +63,7 @@
                     <td>/movies</td>
                     <td>GET</td>
                     <td>None</td>
+                    <td>Bearer Token Authentication (JWT)</td>
                     <td>None</td>
                     <td>Array of JSON objects holding data about all movies.</td>
                 </tr>
@@ -71,6 +72,7 @@
                     <td>/movies/[Title]</td>
                     <td>GET</td>
                     <td>:Title</td>
+                    <td>Bearer Token Authentication (JWT)</td>
                     <td>None</td>
                     <td>A JSON object holding data about a single movie, 
                         containing a Name, description, genre, director, 
@@ -95,6 +97,7 @@
                     <td>/movies/genre/[Name]</td>
                     <td>GET</td>
                     <td>:Name</td>
+                    <td>Bearer Token Authentication (JWT)</td>
                     <td>None</td>
                     <td>A JSON object holding data about movies, 
                         containing an especific genre. Example: <br>
@@ -108,6 +111,7 @@
                     <td>/movies/director/[Name]</td>
                     <td>GET</td>
                     <td>:Name</td>
+                    <td>Bearer Token Authentication (JWT)</td>
                     <td>None</td>
                     <td>A JSON object holding data about a director,
                         containing an especific director name. Example: <br>
@@ -122,6 +126,7 @@
                     <td>Add an user</td>
                     <td>/users</td>
                     <td>POST</td>
+                    <td>None</td>
                     <td>None</td>
                     <td>A JSON object holding data about a new user. Example:<br>
                         {<br>
@@ -144,10 +149,25 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Allows an user to log in</td>
+                    <td>/login</td>
+                    <td>POST</td>
+                    <td>None</td>
+                    <td>Basic HTTP Authentication (Username and Password)</td>
+                    <td>A JSON Object holding the Username and Password from the user. <br>
+                        Example: <br>
+                        { <br> 
+                            "Username": "", <br>
+                            "Password": "" <br>
+                        }</td>
+                    <td>Permition or deniel access to the app.</td>
+                </tr>
+                <tr>
                     <td>Update info from an user</td>
                     <td>/users/[Username]</td>
                     <td>PUT</td>
                     <td>:Username</td>
+                    <td>Bearer Token Authentication (JWT)</td>
                     <td>A JSON Object holding data with the new user update. <br>
                         Example: <br>
                         {<br>
@@ -171,13 +191,16 @@
                 </tr>
                 <tr>
                     <td>Allows users to add a movie to their List of Fvorites</td>
-                    <td>/users/username/favorites/[MovieID]</td>
+                    <td>/users/[Username]/favorites/[MovieID]</td>
                     <td>POST</td>
-                    <td>:MovieID</td>
+                    <td>:Username, <br>
+                        :MovieID <br></td>
+                    <td>Bearer Token Authentication (JWT)</td>
                     <td>None</td>
                     <td>A JSON Object holding the new user's added favorite movie. <br>
                         Example: <br>
                         { <br>
+                            _id: "" <br>
                             Username: "",<br>
                             Password: "",<br>
                             Email: "",<br>
@@ -188,13 +211,16 @@
                 </tr>
                 <tr>
                     <td>Remove a movie from a user's list</td>
-                    <td>/users/username/favorites/[MovieID]</td>
+                    <td>/users/[Username]/favorites/[MovieID]</td>
                     <td>DELETE</td>
-                    <td>:MovieID</td>
+                    <td>:Username, <br>
+                        :MovieID <br></td>
+                    <td>Bearer Token Authentication (JWT)</td>
                     <td>None</td>
                     <td>A JSON Object holding the user's updated favorite movies. <br>
                         Example: <br>
                         {  <br>
+                            _id: "" <br>
                             Username: "",<br>
                             Password: "",<br>
                             Email: "",<br>
@@ -208,6 +234,7 @@
                     <td>/users/[Username]</td>
                     <td>DELETE</td>
                     <td>:Username</td>
+                    <td>Bearer Token Authentication (JWT)</td>
                     <td>None</td>
                     <td>A text message indicating the email of the user is not longer on the app.</td>
                 </tr>
