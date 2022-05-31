@@ -20,6 +20,7 @@
   "homepage": "https://github.com/PamelaKlapp/movie_api_server#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "express": "^4.18.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
