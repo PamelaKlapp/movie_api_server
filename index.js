@@ -47,6 +47,11 @@ mongoose.connect(process.env.CONNECTION_URI_MovieApp, {
   useUnifiedTopology: true,
 });
 
+// welcome to my api
+app.get('/', (req, res) => {
+  res.status(200).send('WELCOME TO MY API')
+});
+
 // Request to GET all movies
 
 app.get(
