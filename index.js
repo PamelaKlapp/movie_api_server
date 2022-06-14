@@ -43,7 +43,8 @@ app.use(morgan("common"));
 
 //mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-mongoose.connect(CONNECTION_URI_MovieApp, {
+
+mongoose.connect(process.env.CONNECTION_URI_MovieApp, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
