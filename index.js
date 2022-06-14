@@ -8,8 +8,7 @@ const express = require("express"),
   uuid = require("uuid"),
   mongoose = require("mongoose"),
   Models = require("./models.js"),
-  cors = require("cors"),
-  bcrypt = require("bcrypt");
+  cors = require("cors");
 
 const { check, validationResult } = require("express-validator");
 
