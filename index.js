@@ -14,7 +14,7 @@ const { check, validationResult } = require("express-validator");
 
 (Movies = Models.Movie), (Users = Models.User);
 
-let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://localhost:53211"];
+let allowedOrigins = ["http://localhost:8080", "http://testsite.com", "http://localhost:53211", "http://localhost:1234"];
 
 app.use(
   cors({
